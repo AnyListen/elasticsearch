@@ -1,9 +1,9 @@
 [role="xpack"]
 [testenv="basic"]
 [[info-api]]
-== Info API
+== 信息 API
 
-Info API 提供了 {xpack} 已安装功能的概要信息。
+信息 API 提供了 {xpack} 已安装功能的概要信息。
 
 [float]
 === 请求
@@ -13,7 +13,7 @@ Info API 提供了 {xpack} 已安装功能的概要信息。
 [float]
 === 说明
 
-通过 Info API 可获取以下信息：
+通过信息 API 可获取以下信息：
 
 * 构建（Build）信息 - 包括内部版本号和时间戳。
 * 许可证（License）信息 - 当前安装的许可证的基本信息。
@@ -35,7 +35,7 @@ Info API 提供了 {xpack} 已安装功能的概要信息。
 [float]
 === 示例
 
-下面是 Info API 的查询示例：
+下面是信息 API 的查询示例：
 
 [source,js]
 ------------------------------------------------------------
