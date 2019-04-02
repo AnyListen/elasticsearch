@@ -4,18 +4,17 @@
 
 [partintro]
 --
-{xpack} exposes REST APIs that are used by the UI components and can be called
-directly to configure and access {xpack} features.
+{xpack} 开放了用户界面组件使用的 REST API，可以直接调用这些 API 来配置和访问 {xpack} 的功能模块。
 
-* <<info-api,Info API>>
-* <<ccr-apis,Cross-cluster replication APIs>>
-* <<graph-explore-api,Graph Explore API>>
-* <<licensing-apis,Licensing APIs>>
-* <<ml-apis,Machine Learning APIs>>
-* <<security-api,Security APIs>>
-* <<watcher-api,Watcher APIs>>
-* <<rollup-apis,Rollup APIs>>
-* <<migration-api,Migration APIs>>
+* <<info-api,信息 API>>
+* <<ccr-apis,跨集群复制 APIs>>
+* <<graph-explore-api,图形探索 API>>
+* <<licensing-apis,许可证 APIs>>
+* <<ml-apis,机器学习 APIs>>
+* <<security-api,安全 API>>
+* <<watcher-api,监控 API>>
+* <<rollup-apis,上卷 APIs>>
+* <<migration-api,迁移 API>>
 --
 
 
