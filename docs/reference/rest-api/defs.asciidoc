@@ -13,7 +13,7 @@
 * <<ml-snapshot-resource,模型快照>>
 * <<ml-results-resource,结果>>
 * <<role-mapping-resources,角色映射>>
-* <<ml-event-resource,计划事件>>
+* <<ml-event-resource,预定事件>>
 
 include::{es-repo-dir}/ml/apis/calendarresource.asciidoc[]
 include::{es-repo-dir}/ml/apis/datafeedresource.asciidoc[]
