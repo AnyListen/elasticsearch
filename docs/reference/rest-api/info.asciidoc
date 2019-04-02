@@ -3,43 +3,39 @@
 [[info-api]]
 == Info API
 
-The info API provides general information about the installed {xpack} features.
+Info API 提供了 {xpack} 已安装功能的概要信息。
 
 [float]
-=== Request
+=== 请求
 
 `GET /_xpack`
 
 [float]
-=== Description
+=== 说明
 
-The information provided by this API includes:
+通过 Info API 可获取以下信息：
 
-* Build Information - including the build number and timestamp.
-* License Information - basic information about the currently installed license.
-* Features Information - The features that are currently enabled and available
-  under the current license.
+* 构建（Build）信息 - 包括内部版本号和时间戳。
+* 许可证（License）信息 - 当前安装的许可证的基本信息。
+* 功能（Features）信息 - 当前许可证下已启用和可用的功能。
 
 [float]
-=== Path Parameters
+=== 路径参数
 
 `categories`::
-  (list) A comma-separated list of the information categories to include in the
-  response. For example, `build,license,features`.
+  (list) 要包含在响应中的的信息类别列表，以逗号分隔。例如：`build,license,features`。
 
 `human`::
-  (boolean) Defines whether additional human-readable information is included in
-  the response. In particular, it adds descriptions and a tag line. The
-  default value is `true`.
+  (boolean) 定义响应中是否包含附加的人类可读的信息，它将会添加描述项和标记行。该配置项的默认值为 `true`。
 
 //=== Query Parameters
 
 //=== Authorization
 
 [float]
-=== Examples
+=== 示例
 
-The following example queries the info API:
+下面是 Info API 的查询示例：
 
 [source,js]
 ------------------------------------------------------------
@@ -47,7 +43,7 @@ GET /_xpack
 ------------------------------------------------------------
 // CONSOLE
 
-Example response:
+示例响应：
 [source,js]
 ------------------------------------------------------------
 {
@@ -114,7 +110,7 @@ Example response:
 // TESTRESPONSE[s/"build_hash" : "3d394c6afe2fc5"/"build_hash": "$body.features.ml.native_code_info.build_hash"/]
 // So much s/// but at least we test that the layout is close to matching....
 
-The following example only returns the build and features information:
+下面的示例仅返回构建和功能信息：
 
 [source,js]
 ------------------------------------------------------------
@@ -122,7 +118,7 @@ GET /_xpack?categories=build,features
 ------------------------------------------------------------
 // CONSOLE
 
-The following example removes the descriptions from the response:
+下面的示例移除了响应中的描述信息：
 
 [source,js]
 ------------------------------------------------------------
