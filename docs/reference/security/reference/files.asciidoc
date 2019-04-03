@@ -1,38 +1,28 @@
 [role="xpack"]
 [[security-files]]
-=== Security Files
+=== 安全相关文件
 
-{security} uses the following files:
+{security} 功能使用了以下文件：
 
-* `ES_PATH_CONF/roles.yml` defines the roles in use on the cluster
-  (read more <<roles-management-file, here>>).
+* `ES_PATH_CONF/roles.yml` 定义群集中正在使用的角色（了解更多 <<roles-management-file, here>>）。
 
-* `ES_PATH_CONF/elasticsearch-users` defines the users and their hashed passwords for
-  the <<file-realm,`file` realm>>.
+* `ES_PATH_CONF/elasticsearch-users` 定义 <<file-realm,`file` realm>> 的用户及其哈希密码。
 
-* `ES_PATH_CONF/elasticsearch-users_roles` defines the user roles assignment for the
-  the <<file-realm, `file` realm>>.
+* `ES_PATH_CONF/elasticsearch-users_roles` 定义 <<file-realm,`file` realm>> 的用户角色分配。
 
-* `ES_PATH_CONF/role_mapping.yml` defines the role assignments for a
-  Distinguished Name (DN) to a role. This allows for LDAP and Active Directory
-  groups and users and PKI users to be mapped to roles (read more
-  <<mapping-roles, here>>).
+* `ES_PATH_CONF/role_mapping.yml` 定义角色的专有名称（DN）的角色分配，
+这允许将 LDAP、Active Directory 组用户以及 PKI 用户映射到角色（了解更多 <<mapping-roles, here>>）。
 
-* `ES_PATH_CONF/log4j2.properties` contains audit information (read more
-  <<logging-file, here>>).
+* `ES_PATH_CONF/log4j2.properties` 包含审计相关信息（了解更多 <<logging-file, here>>）。
 
 [[security-files-location]]
 
-IMPORTANT:  Any files that {security} uses must be stored in the Elasticsearch
-            configuration directory. Elasticsearch runs with restricted permissions
-            and is only permitted to read from the locations configured in the
-            directory layout for enhanced security.
+IMPORTANT:  {security} 功能使用到的全部文件都必须存储在 Elasticsearch 的配置文件夹中。
+            Elasticsearch 以受限的权限运行并且只允许读取目录布局中配置的路径，以此提高安全性。
 
-Several of these files are in the YAML format. When you edit these files, be
-aware that YAML is indentation-level sensitive and indentation errors can lead
-to configuration errors. Avoid the tab character to set indentation levels, or
-use an editor that automatically expands tabs to spaces.
+其中一些配置文件采用了 YAML 格式。
+当您编辑这些文件时，请注意 YAML 是缩进级别敏感的，缩进错误可能会导致配置错误。
+因此，请勿使用制表符来设置缩进级别，除非您使用的编辑器可以自动将制表符展开为空格。
 
-Be careful to properly escape YAML constructs such as `:` or leading exclamation
-points within quoted strings. Using the `|` or `>` characters to define block
-literals instead of escaping the problematic characters can help avoid problems.
+请注意在带引号的字符串中正确转义 YAML 结构，如 `:` 或前导感叹号。
+使用 `|` 或 `>` 来定义块文本而非转义有问题的字符，这样可以避免一些问题。
