@@ -1,26 +1,25 @@
 [role="xpack"]
 [[configuring-tls-docker]]
-=== Encrypting Communications in an {es} Docker Container
+=== 加密 {es} Docker 容器中的通讯
 
-Starting with version 6.0.0, {security} (Gold, Platinum or Enterprise subscriptions) https://www.elastic.co/guide/en/elasticsearch/reference/6.0/breaking-6.0.0-xes.html[requires SSL/TLS]
-encryption for the transport networking layer.
+自 6.0.0 版本开始, {security} (黄金、铂金以及企业订阅)需要对传输网络层进行
+https://www.elastic.co/guide/en/elasticsearch/reference/6.0/breaking-6.0.0-xes.html[SSL/TLS] 加密。
 
-This section demonstrates an easy path to get started with SSL/TLS for both
-HTTPS and transport using the {es} Docker image. The example uses
-Docker Compose to manage the containers.
+本节演示了使用 ElasticSearch Docker 映像对 HTTPS 和 transport 进行 SSL/TLS 加密的简便方法。
+本示例使用 Docker Compose 对容器进行管理。
 
-For further details, please refer to
-{xpack-ref}/encrypting-communications.html[Encrypting Communications] and
-https://www.elastic.co/subscriptions[available subscriptions].
+了解更多内容, 请参考
+{xpack-ref}/encrypting-communications.html[加密通讯] 以及
+https://www.elastic.co/subscriptions[可用订阅]。
 
 [float]
-==== Prepare the environment
+==== 准备环境
 
-<<docker,Install {es} with Docker>>.
+<<docker,使用 Docker 安装 {es}>>。
 
-Inside a new, empty directory, create the following four files:
+在一个新的空目录中，创建以下四个文件：
 
-`instances.yml`:
+`instances.yml`：
 ["source","yaml"]
 ----
 instances:
@@ -38,23 +37,22 @@ instances:
     ip:
       - 127.0.0.1
 ----
-<1> Allow use of embedded Docker DNS server names.
+<1> 允许使用的内嵌的 Docker DNS 服务名。
 
-`.env`:
+`.env`：
 [source,yaml]
 ----
 CERTS_DIR=/usr/share/elasticsearch/config/certificates <1>
 ELASTIC_PASSWORD=PleaseChangeMe <2>
 ----
-<1> The path, inside the Docker image, where certificates are expected to be found.
-<2> Initial password for the `elastic` user.
+<1> Docker 镜像中证书存放的路径。
+<2> `elastic` 用户的初始密码。
 
 [[getting-starter-tls-create-certs-composefile]]
-`create-certs.yml`:
+`create-certs.yml`：
 ifeval::["{release-state}"=="unreleased"]
 
-WARNING: Version {version} of {es} has not yet been released, so a
-`create-certs.yml` is not available for this version.
+WARNING: {version} 版本的 {es} 尚未发布, 因此 `create-certs.yml` 在该版本是不可用的。
 
 endif::[]
 
@@ -83,15 +81,14 @@ services:
     volumes: ['.:/usr/share/elasticsearch/config/certificates']
 ----
 
-<1> The new node certificates and CA certificate+key are placed under the local directory `certs`.
+<1> 新节点的证书和 CA 证书及秘钥被放置在本地 `certs` 文件夹中。
 endif::[]
 
 [[getting-starter-tls-create-docker-compose]]
-`docker-compose.yml`:
+`docker-compose.yml`：
 ifeval::["{release-state}"=="unreleased"]
 
-WARNING: Version {version} of {es} has not yet been released, so a
-`docker-compose.yml` is not available for this version.
+WARNING: {version} 版本的 {es} 尚未发布, 因此 `docker-compose.yml` 在该版本是不可用的。
 
 endif::[]
 
@@ -153,17 +150,15 @@ services:
 volumes: {"esdata_01": {"driver": "local"}, "esdata_02": {"driver": "local"}}
 ----
 
-<1> Bootstrap `elastic` with the password defined in `.env`. See
-{stack-ov}/built-in-users.html#bootstrap-elastic-passwords[the Elastic Bootstrap Password].
-<2> Automatically generate and apply a trial subscription, in order to enable
-{security}.
-<3> Disable verification of authenticity for inter-node communication. Allows
-creating self-signed certificates without having to pin specific internal IP addresses.
+<1> 使用 `.env` 文件中定义的密码初始化 `elastic` 用户。请参考
+{stack-ov}/built-in-users.html#bootstrap-elastic-passwords[Elastic 初始密码]。
+<2> 自动生成并应用试用（trial）订阅，以启用 {security} 功能。
+<3> 禁用节点间通信真实性的校验。允许在不固定特定内部 IP 地址的情况下创建自签名证书。
 endif::[]
 
 [float]
-==== Run the example
-. Generate the certificates (only needed once):
+==== 运行示例
+. 生成证书（仅执行一次）：
 +
 --
 ["source","sh"]
@@ -171,7 +166,7 @@ endif::[]
 docker-compose -f create-certs.yml up
 ----
 --
-. Start two {es} nodes configured for SSL/TLS:
+. 启动两个 {es} 节点供配置 SSL/TLS：
 +
 --
 ["source","sh"]
@@ -179,7 +174,7 @@ docker-compose -f create-certs.yml up
 docker-compose up -d
 ----
 --
-. Access the {es} API over SSL/TLS using the bootstrapped password:
+. 使用初始密码通过 SSL/TLS 访问 {es} API：
 +
 --
 ["source","sh"]
@@ -188,11 +183,10 @@ curl --cacert certs/ca/ca.crt -u elastic:PleaseChangeMe https://localhost:9200
 ----
 // NOTCONSOLE
 --
-. The `elasticsearch-setup-passwords` tool can also be used to generate random
-passwords for all users:
+. `elasticsearch-setup-passwords` 工具还可用于为全部用户生成随机密码：
 +
 --
-WARNING: Windows users not running PowerShell will need to remove `\` and join lines in the snippet below.
+WARNING: 未使用 PowerShell 的 Windows 用户需要删除下面的代码段中的 `\` 并将多行合并为一行。
 ["source","sh"]
 ----
 docker exec es01 /bin/bash -c "bin/elasticsearch-setup-passwords \
