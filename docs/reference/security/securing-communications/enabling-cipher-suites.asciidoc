@@ -1,25 +1,18 @@
 [role="xpack"]
 [[ciphers]]
-=== Enabling Cipher Suites for Stronger Encryption
+=== 启用密码套件实现更强的加密
 
-The TLS and SSL protocols use a cipher suite that determines the strength of
-encryption used to protect the data. You may want to increase the strength of
-encryption used when using a Oracle JVM; the IcedTea OpenJDK ships without these
-restrictions in place. This step is not required to successfully use encrypted
-communication.
+TLS 和 SSL 协议使用密码套件来确保数据保护的加密强度。
+您可能需要在使用 Oracle JVM 时提高加密强度；IcedTea OpenJDK 则没有这些限制。
+本步骤对于成功使用加密通信是非必须的。
 
-The _Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy
-Files_ enable the use of additional cipher suites for Java in a separate JAR file
-that you need to add to your Java installation. You can download this JAR file
-from Oracle's http://www.oracle.com/technetwork/java/javase/downloads/index.html[download page].
-The _JCE Unlimited Strength Jurisdiction Policy Files`_ are required for
-encryption with key lengths greater than 128 bits, such as 256-bit AES encryption.
+_Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files_
+在一个单独的 JAR 文件中开启了 Java 额外的密码套件，您需要将其添加到 Java 安装目录中。
+您可以从 Oracle 的  http://www.oracle.com/technetwork/java/javase/downloads/index.html[下载页面] 下载此 JAR 文件。
+密钥长度大于 128 位的加密需要 _JCE Unlimited Strength Jurisdiction Policy Files`_，例如 256 位密钥的 AES 加密。
 
-After installation, all cipher suites in the JCE are available for use but requires
-configuration in order to use them. To enable the use of stronger cipher suites with
-{security}, configure the `cipher_suites` parameter. For specific parameter
-information, see <<ssl-tls-settings>>.
+安装配置后，JCE 中的所有密码套件均可使用。
+若要启用 {security} 更强的密码套件，需配置 `cipher_suites` 参数。
+有关参数的信息，请参阅 <<ssl-tls-settings>>。
 
-NOTE: The _JCE Unlimited Strength Jurisdiction Policy Files_ must be installed
-      on all nodes in the cluster to establish an improved level of encryption
-      strength.
+NOTE: 群集中的所有节点都必须安装 _JCE Unlimited Strength Jurisdiction Policy Files_ 以构建更高水平的加密强度。
