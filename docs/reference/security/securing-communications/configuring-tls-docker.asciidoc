@@ -2,7 +2,7 @@
 [[configuring-tls-docker]]
 === 加密 {es} Docker 容器中的通讯
 
-自 6.0.0 版本开始, {security} (黄金、铂金以及企业订阅)需要对传输网络层进行
+自 6.0.0 版本开始, {security} (黄金、白金以及企业订阅)需要对传输网络层进行
 https://www.elastic.co/guide/en/elasticsearch/reference/6.0/breaking-6.0.0-xes.html[SSL/TLS] 加密。
 
 本节演示了使用 ElasticSearch Docker 映像对 HTTPS 和 transport 进行 SSL/TLS 加密的简便方法。
